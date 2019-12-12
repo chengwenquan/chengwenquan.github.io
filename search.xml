@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>第二章</title>
+    <url>/2019/10/23/%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>第一章</title>
+    <url>/2019/10/23/%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">object KeyedProcessFunctionDemo &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment</span><br><span class="line">    //从socket中接收的源数据</span><br><span class="line">    val ods: DataStream[String] = env.socketTextStream(&quot;localhost&quot;,7777)</span><br><span class="line"></span><br><span class="line">    //将数据映射成对象</span><br><span class="line">    val obj_ds: DataStream[Sensor] = ods.map(e =&gt; &#123;</span><br><span class="line">      val strs: Array[String] = e.split(&quot;,&quot;)</span><br><span class="line">      Sensor(strs(0), strs(1).toLong, strs(2).toDouble)</span><br><span class="line">    &#125;)</span><br><span class="line">    obj_ds.keyBy(_.id).process(new TempIncreseWarning()).print()</span><br><span class="line">    env.execute(&quot;keyedProcessFunction&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>编程</tag>
+      </tags>
+  </entry>
+</search>
